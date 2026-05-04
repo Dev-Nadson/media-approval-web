@@ -1,6 +1,5 @@
 "use client"
 
-import * as React from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Controller, useForm } from "react-hook-form"
 import * as z from "zod"
@@ -14,6 +13,7 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Button } from "../ui/button"
+import { redirect } from "next/navigation"
 
 
 const formSchema = z.object({
@@ -37,20 +37,8 @@ export function SignInForm() {
     })
 
     function onSubmit(data: z.infer<typeof formSchema>) {
-        // toast("You submitted the following values:", {
-        //     description: (
-        //         <pre className="mt-2 w-[320px] overflow-x-auto rounded-md bg-code p-4 text-code-foreground">
-        //             <code>{JSON.stringify(data, null, 2)}</code>
-        //         </pre>
-        //     ),
-        //     position: "bottom-right",
-        //     classNames: {
-        //         content: "flex flex-col gap-2",
-        //     },
-        //     style: {
-        //         "--border-radius": "calc(var(--radius)  + 4px)",
-        //     } as React.CSSProperties,
-        // })
+        alert(`Formulário enviado com sucesso!\n ${JSON.stringify(data)}`)
+        redirect("/")
     }
 
     return (
