@@ -7,8 +7,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { SignInForm } from "./forms/signin-form"
-import { Separator } from "./ui/separator"
+import { SignInForm } from "@/components/forms/signin-form"
 import Link from "next/link"
 import Image from "next/image"
 import { Layers } from "lucide-react"
