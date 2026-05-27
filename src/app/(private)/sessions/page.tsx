@@ -1,9 +1,10 @@
 import { PageContainer } from "@/components/ui/page";
+import SessionsCard from "@/components/sessions";
 
 export default function SessionsPage() {
     return (
-        <PageContainer>
-            <h1 className="text-3xl">Sessões</h1>
+        <PageContainer className="w-screen h-screen py-10 ">
+            <SessionsCard />
         </PageContainer>
     );
 }
