@@ -1,4 +1,6 @@
-import { Button } from "../ui/button";
+"use client"
+
+import { useEffect, useState } from "react";
 import {
     Card,
     CardContent,
@@ -6,8 +8,9 @@ import {
     CardHeader,
     CardTitle,
 } from "../ui/card";
-import { ImagePlus, Plus } from "lucide-react";
+import { ImagePlus } from "lucide-react";
 import { Session, SessionItem, getSessionStatus } from "../ui/session";
+import { CreateSessionModal } from "../modals/create-session-modal";
 
 const sessions: Session[] = [
     {
@@ -142,12 +145,41 @@ const sessions: Session[] = [
         created_at: "2025-01-10T00:00:00.000Z",
         deleted_at: null,
     },
+    {
+        id: 12,
+        url_id: "jynzoqhs",
+        author_id: "123456",
+        title: "Session 11",
+        description: null,
+        client_email: "carol@photo.studio",
+        password_hash: "123456",
+        expires_at: "2026-06-01T00:00:00.000Z",
+        created_at: "2025-01-10T00:00:00.000Z",
+        deleted_at: null,
+    },
+    {
+        id: 13,
+        url_id: "jynzoqhs",
+        author_id: "123456",
+        title: "Session 11",
+        description: null,
+        client_email: "carol@photo.studio",
+        password_hash: "123456",
+        expires_at: "2026-06-01T00:00:00.000Z",
+        created_at: "2025-01-10T00:00:00.000Z",
+        deleted_at: null,
+    },
 ];
 
 
 export default function SessionsCard() {
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        setIsLoading(false);
+    }, []);
+
     const activeSessions = sessions.filter((s) => getSessionStatus(s) === "active").length;
-    const pluralText = activeSessions !== 1 ? "" : "s";
 
     return (
         <Card className="w-full max-w-4xl mx-auto shadow-2xl shadow-black/10">
@@ -161,20 +193,25 @@ export default function SessionsCard() {
                             <CardTitle className="text-2xl font-semibold tracking-tight">
                                 Sessões
                             </CardTitle>
-                            <CardDescription className="mt-0.5">
-                                {activeSessions} {pluralText ? "sessão ativa" : "sessões ativas"} de{" "}
-                                {sessions.length} {pluralText ? "sessão" : "sessões"}
+                            <CardDescription className="mt-0.5" suppressHydrationWarning>
+                                {isLoading ? (
+                                    "Carregando sessões..."
+                                ) : (
+                                    <>
+                                        {activeSessions} {activeSessions === 1 ? "sessão ativa" : "sessões ativas"} de{" "}
+                                        {sessions.length} {sessions.length === 1 ? "sessão" : "sessões"}
+                                    </>
+                                )}
                             </CardDescription>
                         </div>
                     </div>
-                    <Button size="lg" className="my-auto gap-1.5">
-                        <Plus className="size-3.5" strokeWidth={2.5} />
-                        Nova sessão
-                    </Button>
+                    <div className="my-auto">
+                        <CreateSessionModal />
+                    </div>
                 </div>
             </CardHeader>
 
-            <CardContent className="p-0 max-h-[680px] overflow-y-auto">
+            <CardContent className="p-0 max-h-[calc(100vh-200px)] overflow-y-auto">
                 <ul className="divide-y divide-border/60">
                     {sessions.map((session) => (
                         <SessionItem key={session.id} session={session} />

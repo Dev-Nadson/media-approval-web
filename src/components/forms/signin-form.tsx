@@ -38,7 +38,7 @@ export function SignInForm() {
 
     function onSubmit(data: z.infer<typeof formSchema>) {
         alert(`Formulário enviado com sucesso!\n ${JSON.stringify(data)}`)
-        redirect("/")
+        redirect("/sessions")
     }
 
     return (

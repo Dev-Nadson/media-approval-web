@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import { Google_Sans } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "next-themes";
+import { Providers } from "@/components/providers";
 import { PageContainer } from "@/components/ui/page";
 
 const googleSans = Google_Sans({
   variable: "--font-google-sans",
   subsets: ["latin"],
+  adjustFontFallback: false,
+
+  fallback: ['system-ui', 'Arial', 'sans-serif'],
 });
 
 export const metadata: Metadata = {
@@ -21,20 +24,16 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="pt-BR"
       className={googleSans.className}
       suppressHydrationWarning={true}
     >
       <body className="min-h-full min-w-full">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-        >
+        <Providers>
           <PageContainer>
             {children}
           </PageContainer>
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );

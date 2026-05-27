@@ -38,7 +38,7 @@ export const sessionStatusConfig: Record<
 > = {
     active: {
         label: "Ativa",
-        dotClass: "bg-primary",
+        dotClass: "bg-primary animate-pulse",
         badgeClass:
             "bg-primary/10 text-primary border border-primary/20 dark:bg-primary/15 dark:text-primary dark:border-primary/25",
         borderClass: "border-l-primary/60",
@@ -51,7 +51,7 @@ export const sessionStatusConfig: Record<
     },
     deleted: {
         label: "Concluída",
-        dotClass: "bg-green-600",
+        dotClass: "bg-green-600 animate-pulse",
         badgeClass:
             "bg-green-600/10 text-green-600 border border-green-600/20 dark:bg-green-600/15 dark:border-green-600/25",
         borderClass: "border-l-green-600/50",
